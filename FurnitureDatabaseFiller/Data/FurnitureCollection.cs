@@ -8,8 +8,8 @@ namespace FurnitureDatabaseFiller.Data
 {
     internal class FurnitureCollection
     {
-        public string CollectionId { get; set; }
-        public string CollectionName { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
         public List<FurnitureElement> Elements {get;set;}
     }
 }
