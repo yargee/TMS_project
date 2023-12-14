@@ -32,11 +32,13 @@
             tabPage1 = new TabPage();
             Add_collection_btn = new Button();
             tabPage2 = new TabPage();
-            add_model_btn = new Button();
             change_model_btn = new Button();
+            add_model_btn = new Button();
+            dataGridView1 = new DataGridView();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -48,24 +50,25 @@
             tabControl1.Margin = new Padding(2);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(400, 291);
+            tabControl1.Size = new Size(664, 437);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(dataGridView1);
             tabPage1.Controls.Add(Add_collection_btn);
             tabPage1.Location = new Point(4, 24);
             tabPage1.Margin = new Padding(2);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(2);
-            tabPage1.Size = new Size(392, 263);
+            tabPage1.Size = new Size(656, 409);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Коллекция";
             tabPage1.UseVisualStyleBackColor = true;
             // 
             // Add_collection_btn
             // 
-            Add_collection_btn.Location = new Point(92, 81);
+            Add_collection_btn.Location = new Point(7, 4);
             Add_collection_btn.Margin = new Padding(2);
             Add_collection_btn.Name = "Add_collection_btn";
             Add_collection_btn.Size = new Size(188, 67);
@@ -82,20 +85,10 @@
             tabPage2.Margin = new Padding(2);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(2);
-            tabPage2.Size = new Size(392, 263);
+            tabPage2.Size = new Size(1012, 409);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Модель";
             tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // add_model_btn
-            // 
-            add_model_btn.Location = new Point(7, 4);
-            add_model_btn.Margin = new Padding(2);
-            add_model_btn.Name = "add_model_btn";
-            add_model_btn.Size = new Size(167, 62);
-            add_model_btn.TabIndex = 1;
-            add_model_btn.Text = "Добавить модель";
-            add_model_btn.UseVisualStyleBackColor = true;
             // 
             // change_model_btn
             // 
@@ -107,11 +100,29 @@
             change_model_btn.Text = "Изменить модель";
             change_model_btn.UseVisualStyleBackColor = true;
             // 
+            // add_model_btn
+            // 
+            add_model_btn.Location = new Point(7, 4);
+            add_model_btn.Margin = new Padding(2);
+            add_model_btn.Name = "add_model_btn";
+            add_model_btn.Size = new Size(167, 62);
+            add_model_btn.TabIndex = 1;
+            add_model_btn.Text = "Добавить модель";
+            add_model_btn.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(229, 5);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(419, 396);
+            dataGridView1.TabIndex = 1;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(400, 291);
+            ClientSize = new Size(664, 437);
             Controls.Add(tabControl1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Margin = new Padding(2);
@@ -120,6 +131,7 @@
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -131,6 +143,7 @@
         private System.Windows.Forms.Button Add_collection_btn;
         private Button add_model_btn;
         private Button change_model_btn;
+        private DataGridView dataGridView1;
     }
 }
 

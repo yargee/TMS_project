@@ -8,7 +8,8 @@ namespace FurnitureDatabaseFiller.Data
 {
     internal class FurnitureElement
     {
-        private List<string> _images { get;} = new List<string>();
+        public List<string> Images { get; set; }
+        public int[] Prices { get; set; }
 
         public string Id { get;}  
         public string Name { get;}
@@ -20,11 +21,8 @@ namespace FurnitureDatabaseFiller.Data
             Id = id;
             Name = name;
             Scheme = scheme;
-        }
-
-        public void AddImage(string path)
-        {
-            _images.Add(path);
+            Images = new List<string>();
+            Prices = new int[10];
         }
     }
 }

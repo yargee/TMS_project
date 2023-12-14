@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FurnitureDatabaseFiller.Data
+﻿namespace FurnitureDatabaseFiller.Data
 {
     internal class FurnitureCollection
     {
-        private List<FurnitureElement> _elements { get;} = new List<FurnitureElement>();
-
+        public List<FurnitureElement> Elements { get; set; }
         public string Id { get; set; }
         public string Name { get; set; }
         
@@ -18,11 +11,7 @@ namespace FurnitureDatabaseFiller.Data
         {
             Id = id;
             Name = name;
-        }
-
-        public void AddElement(FurnitureElement element)
-        {
-            _elements.Add(element);
+            Elements = new List<FurnitureElement>();
         }
     }
 }
