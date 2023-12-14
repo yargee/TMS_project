@@ -14,11 +14,6 @@
         {
             CollectionId = CollectionIdInputField.Text;
             CollectionName = CollectionNameInputField.Text;
-
-            var collection = new FurnitureCollection(CollectionId, CollectionName);
-
-            CollectionId = null;
-            CollectionName = null;
         }
     }
 }

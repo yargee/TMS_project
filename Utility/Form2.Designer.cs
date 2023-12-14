@@ -32,7 +32,7 @@
             CollectionIdInputLabel = new Label();
             CollectionNameInputLabel = new Label();
             CollectionNameInputField = new TextBox();
-            CollectionAddButton = new Button();
+            CollectionAddApproveButton = new Button();
             SuspendLayout();
             // 
             // CollectionIdInputField
@@ -67,23 +67,23 @@
             CollectionNameInputField.Size = new Size(144, 23);
             CollectionNameInputField.TabIndex = 3;
             // 
-            // CollectionAddButton
+            // CollectionAddApproveButton
             // 
-            CollectionAddButton.DialogResult = DialogResult.OK;
-            CollectionAddButton.Location = new Point(12, 96);
-            CollectionAddButton.Name = "CollectionAddButton";
-            CollectionAddButton.Size = new Size(209, 39);
-            CollectionAddButton.TabIndex = 4;
-            CollectionAddButton.Text = "Добавить коллекцию";
-            CollectionAddButton.UseVisualStyleBackColor = true;
-            CollectionAddButton.Click += CollectionAddButton_Click;
+            CollectionAddApproveButton.DialogResult = DialogResult.OK;
+            CollectionAddApproveButton.Location = new Point(12, 96);
+            CollectionAddApproveButton.Name = "CollectionAddApproveButton";
+            CollectionAddApproveButton.Size = new Size(209, 39);
+            CollectionAddApproveButton.TabIndex = 4;
+            CollectionAddApproveButton.Text = "Добавить коллекцию";
+            CollectionAddApproveButton.UseVisualStyleBackColor = true;
+            CollectionAddApproveButton.Click += CollectionAddButton_Click;
             // 
             // CollectionInputDialogForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(236, 147);
-            Controls.Add(CollectionAddButton);
+            Controls.Add(CollectionAddApproveButton);
             Controls.Add(CollectionNameInputField);
             Controls.Add(CollectionNameInputLabel);
             Controls.Add(CollectionIdInputLabel);
@@ -101,6 +101,6 @@
         private Label CollectionIdInputLabel;
         private Label CollectionNameInputLabel;
         private TextBox CollectionNameInputField;
-        private Button CollectionAddButton;
+        private Button CollectionAddApproveButton;
     }
 }

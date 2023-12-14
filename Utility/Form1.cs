@@ -1,3 +1,5 @@
+using System.Windows.Forms;
+
 namespace Utility
 {
     public partial class Form1 : Form
@@ -9,15 +11,36 @@ namespace Utility
 
         private void Add_collection_btn_Click(object sender, EventArgs e)
         {
-            using (CollectionInputDialogForm input = new CollectionInputDialogForm())
+            using (var input = new CollectionInputDialogForm())
             {
-
-                if (input.ShowDialog() == DialogResult.OK)
+                if (input.ShowDialog() == DialogResult.OK
+                    &&input.CollectionId != string.Empty
+                    && input.CollectionName != string.Empty)
                 {
                     using (var context = new UtilityDbContext())
                     {
-                        var data = new FurnitureCollection (input.CollectionId,input.CollectionName);
-                        textBox1.Text = "insdsadfet";//data.Name + data.Id;
+                        var data = new FurnitureCollection(input.CollectionId, input.CollectionName);
+                        context.Add(data);
+                        context.SaveChanges();
+                        UpdateGridView(context);
+                    }
+                }
+            }
+        }
+
+        private void ModelAddButton_Click(object sender, EventArgs e)
+        {
+            using (var input = new ElementlInputDialogForm())
+            {
+                if (input.ShowDialog() == DialogResult.OK 
+                    && input.ElementId != string.Empty 
+                    && input.ElementName != string.Empty 
+                    && input.ElementDescription != string.Empty
+                    && input.CollectionId != string.Empty)
+                {
+                    using (var context = new UtilityDbContext())
+                    {
+                        var data = new FurnitureElement(input.ElementId, input.ElementName, input.ElementDescription, input.CollectionId);
                         context.Add(data);
                         context.SaveChanges();
                         UpdateGridView(context);
@@ -30,9 +53,11 @@ namespace Utility
         {
             using (var context = new UtilityDbContext())
             {
-                context.Database.EnsureDeleted();
+                //context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
                 UpdateGridView(context);
+                CollectionsDataGridView.ClearSelection();
+                ElementsDataGridView.Visible = false;
             }
         }
 
@@ -43,15 +68,22 @@ namespace Utility
 
             CollectionsDataGridView.DataSource = collectionsData;
             ElementsDataGridView.DataSource = elementsData;
+        }
 
-            string text = "";
+        private void CollectionsDataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            ElementsDataGridView.Visible = true;
 
-            foreach(var collection in collectionsData)
+            if (CollectionsDataGridView.SelectedRows.Count > 0)
             {
-                text += collection.CollectionId + "/" + collection.Name + ".";
-            }
+                var selectedRow = CollectionsDataGridView.SelectedRows[0];
+                string targetId = selectedRow.Cells[0].Value.ToString();
 
-            textBox1.Text = collectionsData.Count().ToString();
+                using (var context = new UtilityDbContext())
+                {
+                    ElementsDataGridView.DataSource = context.Elements.Where(x => x.CollectionId == targetId).ToList();
+                }
+            }
         }
     }
 }

@@ -35,13 +35,12 @@ public class FurnitureElement
     public string ElementId { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
-
     public string CollectionId { get; set; }
 
     public FurnitureElement() { }
     public FurnitureElement(string id, string name, string description, string collectionId)
     {
-        ElementId = id;
+        ElementId = collectionId + "." + id;
         Name = name;
         Description = description;
         CollectionId = collectionId;
