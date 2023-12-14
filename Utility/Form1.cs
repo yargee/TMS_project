@@ -57,7 +57,7 @@ namespace Utility
                 context.Database.EnsureCreated();
                 UpdateGridView(context);
                 CollectionsDataGridView.ClearSelection();
-                ElementsDataGridView.Visible = false;
+                ElementsDataGridView.Columns.Clear();
             }
         }
 
@@ -82,6 +82,10 @@ namespace Utility
                 using (var context = new UtilityDbContext())
                 {
                     ElementsDataGridView.DataSource = context.Elements.Where(x => x.CollectionId == targetId).ToList();
+                    ElementsDataGridView.Columns.Clear();
+                    ElementsDataGridView.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "ID", DataPropertyName = "ElementId" });
+                    ElementsDataGridView.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Название", DataPropertyName = "Name" });
+                    ElementsDataGridView.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Описание", DataPropertyName = "Description" });
                 }
             }
         }

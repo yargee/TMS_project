@@ -33,10 +33,6 @@
             tabPage1 = new TabPage();
             ModelAddButton = new Button();
             ElementsDataGridView = new DataGridView();
-            elementIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            nameDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            descriptionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            furnitureElementBindingSource1 = new BindingSource(components);
             CollectionsDataGridView = new DataGridView();
             collectionIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -45,15 +41,16 @@
             tabPage2 = new TabPage();
             change_model_btn = new Button();
             add_model_btn = new Button();
+            furnitureElementBindingSource1 = new BindingSource(components);
             furnitureElementBindingSource = new BindingSource(components);
             furnitureCollectionBindingSource = new BindingSource(components);
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ElementsDataGridView).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)furnitureElementBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)CollectionsDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)furnitureCollectionBindingSource1).BeginInit();
             tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)furnitureElementBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)furnitureElementBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)furnitureCollectionBindingSource).BeginInit();
             SuspendLayout();
@@ -67,7 +64,7 @@
             tabControl1.Margin = new Padding(2);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(728, 266);
+            tabControl1.Size = new Size(822, 266);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -80,7 +77,7 @@
             tabPage1.Margin = new Padding(2);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(2);
-            tabPage1.Size = new Size(720, 238);
+            tabPage1.Size = new Size(814, 238);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Коллекция";
             tabPage1.UseVisualStyleBackColor = true;
@@ -98,42 +95,13 @@
             // 
             // ElementsDataGridView
             // 
-            ElementsDataGridView.AutoGenerateColumns = false;
             ElementsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ElementsDataGridView.Columns.AddRange(new DataGridViewColumn[] { elementIdDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn1, descriptionDataGridViewTextBoxColumn });
-            ElementsDataGridView.DataSource = furnitureElementBindingSource1;
             ElementsDataGridView.Location = new Point(357, 3);
             ElementsDataGridView.Name = "ElementsDataGridView";
             ElementsDataGridView.ReadOnly = true;
             ElementsDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            ElementsDataGridView.Size = new Size(355, 217);
+            ElementsDataGridView.Size = new Size(447, 217);
             ElementsDataGridView.TabIndex = 2;
-            ElementsDataGridView.Visible = false;
-            // 
-            // elementIdDataGridViewTextBoxColumn
-            // 
-            elementIdDataGridViewTextBoxColumn.DataPropertyName = "ElementId";
-            elementIdDataGridViewTextBoxColumn.HeaderText = "ElementId";
-            elementIdDataGridViewTextBoxColumn.Name = "elementIdDataGridViewTextBoxColumn";
-            elementIdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn1
-            // 
-            nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
-            nameDataGridViewTextBoxColumn1.HeaderText = "Name";
-            nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
-            nameDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // descriptionDataGridViewTextBoxColumn
-            // 
-            descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
-            descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
-            descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
-            descriptionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // furnitureElementBindingSource1
-            // 
-            furnitureElementBindingSource1.DataSource = typeof(FurnitureElement);
             // 
             // CollectionsDataGridView
             // 
@@ -186,7 +154,7 @@
             tabPage2.Margin = new Padding(2);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(2);
-            tabPage2.Size = new Size(855, 311);
+            tabPage2.Size = new Size(1528, 238);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Модель";
             tabPage2.UseVisualStyleBackColor = true;
@@ -211,6 +179,10 @@
             add_model_btn.Text = "Добавить модель";
             add_model_btn.UseVisualStyleBackColor = true;
             // 
+            // furnitureElementBindingSource1
+            // 
+            furnitureElementBindingSource1.DataSource = typeof(FurnitureElement);
+            // 
             // furnitureElementBindingSource
             // 
             furnitureElementBindingSource.DataSource = typeof(FurnitureElement);
@@ -223,7 +195,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(728, 266);
+            ClientSize = new Size(822, 266);
             Controls.Add(tabControl1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Margin = new Padding(2);
@@ -233,10 +205,10 @@
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)ElementsDataGridView).EndInit();
-            ((System.ComponentModel.ISupportInitialize)furnitureElementBindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)CollectionsDataGridView).EndInit();
             ((System.ComponentModel.ISupportInitialize)furnitureCollectionBindingSource1).EndInit();
             tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)furnitureElementBindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)furnitureElementBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)furnitureCollectionBindingSource).EndInit();
             ResumeLayout(false);
@@ -257,9 +229,6 @@
         private BindingSource furnitureCollectionBindingSource1;
         private BindingSource furnitureElementBindingSource1;
         private Button ModelAddButton;
-        private DataGridViewTextBoxColumn elementIdDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn collectionIdDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
     }
