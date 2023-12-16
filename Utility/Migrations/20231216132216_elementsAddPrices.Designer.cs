@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,35 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Utility.Migrations
 {
     [DbContext(typeof(UtilityDbContext))]
-    partial class UtilityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231216132216_elementsAddPrices")]
+    partial class elementsAddPrices
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
-
-            modelBuilder.Entity("ElementPrice", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("ElementId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("FurnitureElementId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FurnitureElementId");
-
-                    b.ToTable("ElementsPrice");
-                });
 
             modelBuilder.Entity("FurnitureCollection", b =>
                 {
@@ -83,18 +63,15 @@ namespace Utility.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Prices")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.HasIndex("FurnitureCollectionId");
 
                     b.ToTable("Elements");
-                });
-
-            modelBuilder.Entity("ElementPrice", b =>
-                {
-                    b.HasOne("FurnitureElement", null)
-                        .WithMany("Prices")
-                        .HasForeignKey("FurnitureElementId");
                 });
 
             modelBuilder.Entity("FurnitureElement", b =>
@@ -107,11 +84,6 @@ namespace Utility.Migrations
             modelBuilder.Entity("FurnitureCollection", b =>
                 {
                     b.Navigation("Elements");
-                });
-
-            modelBuilder.Entity("FurnitureElement", b =>
-                {
-                    b.Navigation("Prices");
                 });
 #pragma warning restore 612, 618
         }

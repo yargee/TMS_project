@@ -31,7 +31,6 @@
             components = new System.ComponentModel.Container();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            ModelAddButton = new Button();
             ElementsDataGridView = new DataGridView();
             CollectionsDataGridView = new DataGridView();
             collectionIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -39,8 +38,10 @@
             furnitureCollectionBindingSource1 = new BindingSource(components);
             CollectionAddButton = new Button();
             tabPage2 = new TabPage();
-            change_model_btn = new Button();
-            add_model_btn = new Button();
+            textBox2 = new TextBox();
+            textBox1 = new TextBox();
+            TempXMLDataView = new DataGridView();
+            SelectPriceFileButton = new Button();
             furnitureElementBindingSource1 = new BindingSource(components);
             furnitureElementBindingSource = new BindingSource(components);
             furnitureCollectionBindingSource = new BindingSource(components);
@@ -50,6 +51,7 @@
             ((System.ComponentModel.ISupportInitialize)CollectionsDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)furnitureCollectionBindingSource1).BeginInit();
             tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)TempXMLDataView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)furnitureElementBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)furnitureElementBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)furnitureCollectionBindingSource).BeginInit();
@@ -64,12 +66,11 @@
             tabControl1.Margin = new Padding(2);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(822, 266);
+            tabControl1.Size = new Size(1805, 752);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
-            tabPage1.Controls.Add(ModelAddButton);
             tabPage1.Controls.Add(ElementsDataGridView);
             tabPage1.Controls.Add(CollectionsDataGridView);
             tabPage1.Controls.Add(CollectionAddButton);
@@ -77,26 +78,15 @@
             tabPage1.Margin = new Padding(2);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(2);
-            tabPage1.Size = new Size(814, 238);
+            tabPage1.Size = new Size(1797, 724);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Коллекция";
             tabPage1.UseVisualStyleBackColor = true;
             // 
-            // ModelAddButton
-            // 
-            ModelAddButton.Location = new Point(7, 75);
-            ModelAddButton.Margin = new Padding(2);
-            ModelAddButton.Name = "ModelAddButton";
-            ModelAddButton.Size = new Size(89, 62);
-            ModelAddButton.TabIndex = 4;
-            ModelAddButton.Text = "Добавить модель";
-            ModelAddButton.UseVisualStyleBackColor = true;
-            ModelAddButton.Click += ModelAddButton_Click;
-            // 
             // ElementsDataGridView
             // 
             ElementsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ElementsDataGridView.Location = new Point(357, 3);
+            ElementsDataGridView.Location = new Point(668, 5);
             ElementsDataGridView.Name = "ElementsDataGridView";
             ElementsDataGridView.ReadOnly = true;
             ElementsDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -113,7 +103,7 @@
             CollectionsDataGridView.Name = "CollectionsDataGridView";
             CollectionsDataGridView.ReadOnly = true;
             CollectionsDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            CollectionsDataGridView.Size = new Size(250, 217);
+            CollectionsDataGridView.Size = new Size(401, 217);
             CollectionsDataGridView.TabIndex = 1;
             CollectionsDataGridView.SelectionChanged += CollectionsDataGridView_SelectionChanged;
             // 
@@ -148,36 +138,50 @@
             // 
             // tabPage2
             // 
-            tabPage2.Controls.Add(change_model_btn);
-            tabPage2.Controls.Add(add_model_btn);
+            tabPage2.Controls.Add(textBox2);
+            tabPage2.Controls.Add(textBox1);
+            tabPage2.Controls.Add(TempXMLDataView);
+            tabPage2.Controls.Add(SelectPriceFileButton);
             tabPage2.Location = new Point(4, 24);
-            tabPage2.Margin = new Padding(2);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(2);
-            tabPage2.Size = new Size(1528, 238);
+            tabPage2.Size = new Size(1797, 724);
             tabPage2.TabIndex = 1;
-            tabPage2.Text = "Модель";
+            tabPage2.Text = "Парсинг";
             tabPage2.UseVisualStyleBackColor = true;
             // 
-            // change_model_btn
+            // textBox2
             // 
-            change_model_btn.Location = new Point(7, 70);
-            change_model_btn.Margin = new Padding(2);
-            change_model_btn.Name = "change_model_btn";
-            change_model_btn.Size = new Size(167, 62);
-            change_model_btn.TabIndex = 2;
-            change_model_btn.Text = "Изменить модель";
-            change_model_btn.UseVisualStyleBackColor = true;
+            textBox2.Location = new Point(730, 99);
+            textBox2.Multiline = true;
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(374, 386);
+            textBox2.TabIndex = 3;
             // 
-            // add_model_btn
+            // textBox1
             // 
-            add_model_btn.Location = new Point(7, 4);
-            add_model_btn.Margin = new Padding(2);
-            add_model_btn.Name = "add_model_btn";
-            add_model_btn.Size = new Size(167, 62);
-            add_model_btn.TabIndex = 1;
-            add_model_btn.Text = "Добавить модель";
-            add_model_btn.UseVisualStyleBackColor = true;
+            textBox1.Location = new Point(22, 99);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(689, 386);
+            textBox1.TabIndex = 2;
+            // 
+            // TempXMLDataView
+            // 
+            TempXMLDataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            TempXMLDataView.Location = new Point(158, 18);
+            TempXMLDataView.Name = "TempXMLDataView";
+            TempXMLDataView.Size = new Size(974, 44);
+            TempXMLDataView.TabIndex = 1;
+            // 
+            // SelectPriceFileButton
+            // 
+            SelectPriceFileButton.Location = new Point(22, 18);
+            SelectPriceFileButton.Name = "SelectPriceFileButton";
+            SelectPriceFileButton.Size = new Size(117, 44);
+            SelectPriceFileButton.TabIndex = 0;
+            SelectPriceFileButton.Text = "Выбрать прайс";
+            SelectPriceFileButton.UseVisualStyleBackColor = true;
+            SelectPriceFileButton.Click += SelectPriceFileButton_Click;
             // 
             // furnitureElementBindingSource1
             // 
@@ -195,7 +199,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(822, 266);
+            ClientSize = new Size(1805, 752);
             Controls.Add(tabControl1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Margin = new Padding(2);
@@ -208,6 +212,8 @@
             ((System.ComponentModel.ISupportInitialize)CollectionsDataGridView).EndInit();
             ((System.ComponentModel.ISupportInitialize)furnitureCollectionBindingSource1).EndInit();
             tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)TempXMLDataView).EndInit();
             ((System.ComponentModel.ISupportInitialize)furnitureElementBindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)furnitureElementBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)furnitureCollectionBindingSource).EndInit();
@@ -218,18 +224,19 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button CollectionAddButton;
-        private Button add_model_btn;
-        private Button change_model_btn;
         private DataGridView CollectionsDataGridView;
         private DataGridView ElementsDataGridView;
         private BindingSource furnitureCollectionBindingSource;
         private BindingSource furnitureElementBindingSource;
         private BindingSource furnitureCollectionBindingSource1;
         private BindingSource furnitureElementBindingSource1;
-        private Button ModelAddButton;
         private DataGridViewTextBoxColumn collectionIdDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private TabPage tabPage2;
+        private Button SelectPriceFileButton;
+        private DataGridView TempXMLDataView;
+        private TextBox textBox1;
+        private TextBox textBox2;
     }
 }
