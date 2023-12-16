@@ -102,7 +102,6 @@ namespace Utility
                     var rows = worksheet.RowsUsed();
                     var columns = worksheet.ColumnsUsed();
 
-
                     for (int i = 1; i <= rows.Count(); i++)
                     {
                         for (int j = 1; j <= columns.Count(); j++)
@@ -118,8 +117,6 @@ namespace Utility
 
                             if (TryFindCollection(stringValue, out FurnitureCollection collection))
                             {
-                                var newElement = new FurnitureElement();
-
                                 var elementData = new StringBuilder();
                                 elementData.Append(collection.CollectionId + "@" /*артикул коллекции*/
                                                  + worksheet.Cell(i, j - 1).Value.ToString() + "@"  /*имя элемента*/
@@ -161,11 +158,14 @@ namespace Utility
                                             }
                                         }
 
-                                        var element = new FurnitureElement(collectionId, elementId, elementName);
-                                        foreach(var price in prices)
+                                        for(int m = 0; m < prices.Count; m++)
                                         {
-                                            element.Prices.Add(new ElementPrice(elementId, price));
+                                            var price = new ElementPrice(elementId, m + 3, prices[m]);
+                                            context.Add(price);
+                                            context.SaveChanges();
                                         }
+
+                                        var element = new FurnitureElement(collectionId, elementId, elementName);
 
                                         context.Add(element);
                                         context.SaveChanges();

@@ -21,7 +21,7 @@ namespace Utility.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     ElementId = table.Column<string>(type: "TEXT", nullable: false),
-                    Price = table.Column<int>(type: "INTEGER", nullable: false),
+                    Price = table.Column<int>(type: "INTEGER", nullable: true),
                     FurnitureElementId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>

@@ -45,6 +45,7 @@ public class FurnitureElement
         CollectionId = collectionId;
         ElementId = elementId;
         Name = name;
+        Description = string.Empty;
     }
 }
 
@@ -52,12 +53,14 @@ public class ElementPrice
 {
     public int Id { get; set; }
     public string ElementId { get; set; }
+    public int Category { get; set; } 
     public int Price { get; set; }
 
     public ElementPrice() { }
-    public ElementPrice(string elementId, int price)
+    public ElementPrice(string elementId,int category, int price)
     {
         ElementId = elementId;
+        Category = category;
         Price = price;
     }
 }
