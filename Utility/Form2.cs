@@ -1,4 +1,6 @@
-﻿namespace Utility
+﻿using Utility.IDChecker;
+
+namespace Utility
 {
     public partial class CollectionInputDialogForm : Form
     {
@@ -12,8 +14,9 @@
 
         private void CollectionAddButton_Click(object sender, EventArgs e)
         {
-            CollectionId = CollectionIdInputField.Text;
-            CollectionName = CollectionNameInputField.Text;
+            var equalizer = new StringEqualizer();
+            CollectionId = equalizer.ReplaceEnglishLetters(CollectionIdInputField.Text.Trim());
+            CollectionName = equalizer.ReplaceEnglishLetters(CollectionNameInputField.Text.Trim());
         }
     }
 }

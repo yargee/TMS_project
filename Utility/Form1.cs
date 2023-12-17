@@ -1,5 +1,6 @@
 using ClosedXML.Excel;
 using System.Text;
+using Utility.IDChecker;
 
 namespace Utility
 {
@@ -27,29 +28,9 @@ namespace Utility
                 }
             }
         }
-        /*
-        private void ModelAddButton_Click(object sender, EventArgs e)
-        {
-            using (var input = new ElementlInputDialogForm())
-            {
-                if (input.ShowDialog() == DialogResult.OK
-                    && input.ElementId != string.Empty
-                    && input.ElementName != string.Empty
-                    && input.ElementDescription != string.Empty
-                    && input.CollectionId != string.Empty)
-                {
 
-                    var data = new FurnitureElement(input.ElementId, input.ElementName, input.ElementDescription, input.CollectionId);
-                    context.Add(data);
-                    context.SaveChanges();
-                    UpdateGridView(context);
-                }
-            }
-        }
-        */
         private void Form1_Load(object sender, EventArgs e)
         {
-
             //context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
             UpdateGridView(context);
@@ -79,9 +60,42 @@ namespace Utility
                 {
                     ElementsDataGridView.DataSource = context.Elements.Where(x => x.CollectionId == targetId).ToList();
                     ElementsDataGridView.Columns.Clear();
-                    ElementsDataGridView.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "ID", DataPropertyName = "ElementId" });
-                    ElementsDataGridView.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Название", DataPropertyName = "Name" });
-                    ElementsDataGridView.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Описание", DataPropertyName = "Description" });
+                    var idColumn = new DataGridViewTextBoxColumn { HeaderText = "ID", DataPropertyName = "ElementId" };
+                    var nameColumn = new DataGridViewTextBoxColumn { HeaderText = "Название", DataPropertyName = "Name" };
+                    //idColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    //idColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                    //nameColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    //nameColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+                    ElementsDataGridView.Columns.Add(idColumn);
+                    ElementsDataGridView.Columns.Add(nameColumn);
+
+
+                }
+            }
+        }
+        
+        private void ElementsDataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            PricesDataGridView.Visible = true;
+
+            if (ElementsDataGridView.SelectedRows.Count > 0)
+            {
+                var selectedRow = ElementsDataGridView.SelectedRows[0];
+                string targetId = selectedRow.Cells[0].Value.ToString();
+
+                using (var context = new UtilityDbContext())
+                {
+                    var prices = context.ElementsPrice.Where(x => x.ElementId == targetId).ToList();
+                    PricesDataGridView.DataSource = prices;
+                    PricesDataGridView.Columns.Clear();
+                    PricesDataGridView.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "ID", DataPropertyName = "ElementId" });
+
+                    for(int i = 0; i < prices.Count; i++)
+                    {
+                        PricesDataGridView.Columns.Add(new DataGridViewTextBoxColumn{ HeaderText = $"Category {prices[i].Category}", DataPropertyName = $"{prices[i].Category}" });
+                    }
+
                 }
             }
         }
@@ -101,13 +115,13 @@ namespace Utility
                     var worksheet = workbook.Worksheet(1);
                     var rows = worksheet.RowsUsed();
                     var columns = worksheet.ColumnsUsed();
+                    var equalizer = new StringEqualizer();
 
                     for (int i = 1; i <= rows.Count(); i++)
                     {
                         for (int j = 1; j <= columns.Count(); j++)
                         {
-                            var value = worksheet.Cell(i, j).Value;
-                            var stringValue = value.ToString();
+                            var stringValue = equalizer.ReplaceEnglishLetters(worksheet.Cell(i, j).Value.ToString());
 
                             if (!IsTargetRow(stringValue, out string name))
                             {
@@ -126,7 +140,7 @@ namespace Utility
                                 string elementId = "";
                                 string elementName = "";
 
-                                List<int> prices = new();
+                                List<ElementPrice> prices = new();
 
                                 for (int k = j + 1; k <= columns.Count(); k++)
                                 {
@@ -152,25 +166,24 @@ namespace Utility
                                                 default:
                                                     {
                                                         int.TryParse(data[n], out int price);
-                                                        prices.Add(price);
+                                                        prices.Add(new ElementPrice(elementId, n, price));
                                                     }
                                                     break;
                                             }
                                         }
-
-                                        for(int m = 0; m < prices.Count; m++)
-                                        {
-                                            var price = new ElementPrice(elementId, m + 3, prices[m]);
-                                            context.Add(price);
-                                            context.SaveChanges();
-                                        }
-
-                                        var element = new FurnitureElement(collectionId, elementId, elementName);
-
-                                        context.Add(element);
-                                        context.SaveChanges();
                                     }
                                 }
+
+                                var element = new FurnitureElement(collectionId, elementId, elementName);
+                                textBox3.AppendText("add element " + elementId + Environment.NewLine);
+
+                                foreach (var price in prices)
+                                {
+                                    element.Prices.Add(price);
+                                }
+
+                                context.Add(element);
+                                context.SaveChanges();
 
                                 i++;
                                 j = 0;
@@ -178,8 +191,6 @@ namespace Utility
                                 elementData = null;
                             }
                         }
-
-
                     }
                 }
             }
@@ -187,7 +198,16 @@ namespace Utility
 
         private bool TryFindCollection(string s, out FurnitureCollection collection)
         {
-            collection = context.Collections.FirstOrDefault(x => s.Contains(x.CollectionId));
+            collection = context.Collections.FirstOrDefault(x => (s.Contains(x.CollectionId) || s.Equals(x.CollectionId)));
+
+            if (collection != null)
+            {
+                textBox3.AppendText($"TFC  !{s}!  !{collection.Name}! {Environment.NewLine}");
+            }
+            else
+            {
+                textBox3.AppendText($"FALSE !{s}!  NOT COLLECTION {Environment.NewLine}");
+            }
 
             return collection != null ? true : false;
 
@@ -211,6 +231,15 @@ namespace Utility
             name = "no collections";
 
             return true;
+        }
+
+        private void TempDeleteElements_Click(object sender, EventArgs e)
+        {
+            foreach (var el in context.Elements)
+            {
+                context.Elements.Remove(el);
+                context.SaveChanges();
+            }
         }
     }
 }

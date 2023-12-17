@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Utility.Migrations
 {
     [DbContext(typeof(UtilityDbContext))]
-    [Migration("20231216172405_pricesUpdate2")]
-    partial class pricesUpdate2
+    [Migration("20231217115356_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,9 @@ namespace Utility.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Category")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ElementId")

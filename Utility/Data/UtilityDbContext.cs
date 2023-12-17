@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 
 public class UtilityDbContext : DbContext
 {
@@ -36,6 +37,8 @@ public class FurnitureElement
     public string ElementId { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
+
+    [ForeignKey("FurnitureCollection")]
     public string CollectionId { get; set; }
     public List<ElementPrice> Prices { get; } = new();
 
@@ -52,6 +55,8 @@ public class FurnitureElement
 public class ElementPrice
 {
     public int Id { get; set; }
+
+    [ForeignKey("FurnitureElement")]
     public string ElementId { get; set; }
     public int Category { get; set; } 
     public int Price { get; set; }

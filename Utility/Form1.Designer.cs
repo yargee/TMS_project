@@ -29,8 +29,12 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            TempDeleteElements = new Button();
             ElementsDataGridView = new DataGridView();
             CollectionsDataGridView = new DataGridView();
             collectionIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -38,6 +42,7 @@
             furnitureCollectionBindingSource1 = new BindingSource(components);
             CollectionAddButton = new Button();
             tabPage2 = new TabPage();
+            textBox3 = new TextBox();
             textBox2 = new TextBox();
             textBox1 = new TextBox();
             TempXMLDataView = new DataGridView();
@@ -45,6 +50,7 @@
             furnitureElementBindingSource1 = new BindingSource(components);
             furnitureElementBindingSource = new BindingSource(components);
             furnitureCollectionBindingSource = new BindingSource(components);
+            PricesDataGridView = new DataGridView();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ElementsDataGridView).BeginInit();
@@ -55,6 +61,7 @@
             ((System.ComponentModel.ISupportInitialize)furnitureElementBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)furnitureElementBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)furnitureCollectionBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PricesDataGridView).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -71,6 +78,8 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(PricesDataGridView);
+            tabPage1.Controls.Add(TempDeleteElements);
             tabPage1.Controls.Add(ElementsDataGridView);
             tabPage1.Controls.Add(CollectionsDataGridView);
             tabPage1.Controls.Add(CollectionAddButton);
@@ -83,15 +92,35 @@
             tabPage1.Text = "Коллекция";
             tabPage1.UseVisualStyleBackColor = true;
             // 
+            // TempDeleteElements
+            // 
+            TempDeleteElements.Location = new Point(7, 86);
+            TempDeleteElements.Margin = new Padding(2);
+            TempDeleteElements.Name = "TempDeleteElements";
+            TempDeleteElements.Size = new Size(89, 67);
+            TempDeleteElements.TabIndex = 3;
+            TempDeleteElements.Text = "Очистить элементы";
+            TempDeleteElements.UseVisualStyleBackColor = true;
+            TempDeleteElements.Click += TempDeleteElements_Click;
+            // 
             // ElementsDataGridView
             // 
             ElementsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ElementsDataGridView.Location = new Point(668, 5);
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            ElementsDataGridView.DefaultCellStyle = dataGridViewCellStyle4;
+            ElementsDataGridView.Location = new Point(428, 3);
             ElementsDataGridView.Name = "ElementsDataGridView";
             ElementsDataGridView.ReadOnly = true;
             ElementsDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            ElementsDataGridView.Size = new Size(447, 217);
+            ElementsDataGridView.Size = new Size(362, 217);
             ElementsDataGridView.TabIndex = 2;
+            ElementsDataGridView.SelectionChanged += ElementsDataGridView_SelectionChanged;
             // 
             // CollectionsDataGridView
             // 
@@ -99,27 +128,39 @@
             CollectionsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             CollectionsDataGridView.Columns.AddRange(new DataGridViewColumn[] { collectionIdDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn });
             CollectionsDataGridView.DataSource = furnitureCollectionBindingSource1;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            CollectionsDataGridView.DefaultCellStyle = dataGridViewCellStyle5;
             CollectionsDataGridView.Location = new Point(101, 3);
             CollectionsDataGridView.Name = "CollectionsDataGridView";
             CollectionsDataGridView.ReadOnly = true;
             CollectionsDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            CollectionsDataGridView.Size = new Size(401, 217);
+            CollectionsDataGridView.Size = new Size(305, 217);
             CollectionsDataGridView.TabIndex = 1;
             CollectionsDataGridView.SelectionChanged += CollectionsDataGridView_SelectionChanged;
             // 
             // collectionIdDataGridViewTextBoxColumn
             // 
+            collectionIdDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             collectionIdDataGridViewTextBoxColumn.DataPropertyName = "CollectionId";
             collectionIdDataGridViewTextBoxColumn.HeaderText = "CollectionId";
             collectionIdDataGridViewTextBoxColumn.Name = "collectionIdDataGridViewTextBoxColumn";
             collectionIdDataGridViewTextBoxColumn.ReadOnly = true;
+            collectionIdDataGridViewTextBoxColumn.Width = 96;
             // 
             // nameDataGridViewTextBoxColumn
             // 
+            nameDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             nameDataGridViewTextBoxColumn.HeaderText = "Name";
             nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             nameDataGridViewTextBoxColumn.ReadOnly = true;
+            nameDataGridViewTextBoxColumn.Width = 64;
             // 
             // furnitureCollectionBindingSource1
             // 
@@ -138,6 +179,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(textBox3);
             tabPage2.Controls.Add(textBox2);
             tabPage2.Controls.Add(textBox1);
             tabPage2.Controls.Add(TempXMLDataView);
@@ -149,12 +191,20 @@
             tabPage2.Text = "Парсинг";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(749, 99);
+            textBox3.Multiline = true;
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(359, 386);
+            textBox3.TabIndex = 4;
+            // 
             // textBox2
             // 
-            textBox2.Location = new Point(730, 99);
+            textBox2.Location = new Point(383, 99);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(374, 386);
+            textBox2.Size = new Size(261, 386);
             textBox2.TabIndex = 3;
             // 
             // textBox1
@@ -162,7 +212,7 @@
             textBox1.Location = new Point(22, 99);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(689, 386);
+            textBox1.Size = new Size(243, 386);
             textBox1.TabIndex = 2;
             // 
             // TempXMLDataView
@@ -195,6 +245,24 @@
             // 
             furnitureCollectionBindingSource.DataSource = typeof(FurnitureCollection);
             // 
+            // PricesDataGridView
+            // 
+            PricesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Window;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            PricesDataGridView.DefaultCellStyle = dataGridViewCellStyle6;
+            PricesDataGridView.Location = new Point(101, 240);
+            PricesDataGridView.Name = "PricesDataGridView";
+            PricesDataGridView.ReadOnly = true;
+            PricesDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            PricesDataGridView.Size = new Size(689, 279);
+            PricesDataGridView.TabIndex = 4;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -217,6 +285,7 @@
             ((System.ComponentModel.ISupportInitialize)furnitureElementBindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)furnitureElementBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)furnitureCollectionBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PricesDataGridView).EndInit();
             ResumeLayout(false);
         }
 
@@ -231,12 +300,15 @@
         private BindingSource furnitureElementBindingSource;
         private BindingSource furnitureCollectionBindingSource1;
         private BindingSource furnitureElementBindingSource1;
-        private DataGridViewTextBoxColumn collectionIdDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private TabPage tabPage2;
         private Button SelectPriceFileButton;
         private DataGridView TempXMLDataView;
         private TextBox textBox1;
         private TextBox textBox2;
+        private Button TempDeleteElements;
+        private TextBox textBox3;
+        private DataGridViewTextBoxColumn collectionIdDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private DataGridView PricesDataGridView;
     }
 }
