@@ -73,11 +73,12 @@
             tabControl1.Margin = new Padding(2);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1805, 752);
+            tabControl1.Size = new Size(1040, 752);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
+            tabPage1.BackColor = Color.Khaki;
             tabPage1.Controls.Add(PricesDataGridView);
             tabPage1.Controls.Add(TempDeleteElements);
             tabPage1.Controls.Add(ElementsDataGridView);
@@ -87,10 +88,9 @@
             tabPage1.Margin = new Padding(2);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(2);
-            tabPage1.Size = new Size(1797, 724);
+            tabPage1.Size = new Size(1032, 724);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Коллекция";
-            tabPage1.UseVisualStyleBackColor = true;
             // 
             // PricesDataGridView
             // 
@@ -103,11 +103,11 @@
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             PricesDataGridView.DefaultCellStyle = dataGridViewCellStyle1;
-            PricesDataGridView.Location = new Point(826, 4);
+            PricesDataGridView.Location = new Point(740, 5);
             PricesDataGridView.Name = "PricesDataGridView";
             PricesDataGridView.ReadOnly = true;
             PricesDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            PricesDataGridView.Size = new Size(349, 649);
+            PricesDataGridView.Size = new Size(287, 337);
             PricesDataGridView.TabIndex = 4;
             // 
             // TempDeleteElements
@@ -132,11 +132,11 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             ElementsDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
-            ElementsDataGridView.Location = new Point(428, 3);
+            ElementsDataGridView.Location = new Point(391, 3);
             ElementsDataGridView.Name = "ElementsDataGridView";
             ElementsDataGridView.ReadOnly = true;
             ElementsDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            ElementsDataGridView.Size = new Size(362, 650);
+            ElementsDataGridView.Size = new Size(343, 650);
             ElementsDataGridView.TabIndex = 2;
             ElementsDataGridView.SelectionChanged += ElementsDataGridView_SelectionChanged;
             // 
@@ -267,7 +267,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1805, 752);
+            ClientSize = new Size(1040, 752);
             Controls.Add(tabControl1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Margin = new Padding(2);

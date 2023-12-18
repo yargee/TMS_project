@@ -89,7 +89,8 @@ namespace Utility
         private void SelectPriceFileButton_Click(object sender, EventArgs e)
         {
             IParsingPattern pattern = new StandartSofaPattern(context, textBox1, textBox2, textBox3);
-            pattern.Parse();
+
+            pattern.Parse(new int[] { 1, 2 });
         }
 
         private void TempDeleteElements_Click(object sender, EventArgs e) //сначала удаляем младших зависимых, потом уже старших?

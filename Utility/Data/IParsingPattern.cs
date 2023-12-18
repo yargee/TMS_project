@@ -2,6 +2,6 @@
 {
     internal interface IParsingPattern
     {
-        public void Parse();
+        public void Parse(int[] lists);
     }
 }

@@ -20,7 +20,7 @@ namespace Utility.Data
             _textBox3 = tb3;
         }
 
-        public void Parse()
+        public void Parse(int[] lists)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Файлы Excel|*.xlsx;*.xls";
@@ -30,87 +30,90 @@ namespace Utility.Data
             {
                 string selectedFilePath = openFileDialog.FileName;
 
-                using (var workbook = new XLWorkbook(selectedFilePath))
+                foreach(var index in lists)
                 {
-                    var worksheet = workbook.Worksheet(1);
-                    var rows = worksheet.RowsUsed();
-                    var columns = worksheet.ColumnsUsed();
-                    var equalizer = new StringEqualizer();
-
-                    _textBox3.Clear();
-
-                    for (int i = 1; i <= rows.Count(); i++)
+                    using (var workbook = new XLWorkbook(selectedFilePath))
                     {
-                        for (int j = 1; j <= columns.Count(); j++)
+                        var worksheet = workbook.Worksheet(index);
+                        var rows = worksheet.RowsUsed();
+                        var columns = worksheet.ColumnsUsed();
+                        var equalizer = new StringEqualizer();
+
+                        _textBox3.Clear();
+
+                        for (int i = 1; i <= rows.Count(); i++)
                         {
-                            var stringValue = equalizer.ReplaceEnglishLetters(worksheet.Cell(i, j).Value.ToString());
-
-                            if (!IsTargetRow(stringValue, out string name))
+                            for (int j = 1; j <= columns.Count(); j++)
                             {
-                                _textBox2.AppendText("строка выхода из цикла " + i + " " + name + Environment.NewLine);
-                                break;
-                            }
+                                var stringValue = equalizer.ReplaceEnglishLetters(worksheet.Cell(i, j).Value.ToString());
 
-                            if (TryFindCollection(stringValue, out FurnitureCollection collection))
-                            {
-                                var elementData = new StringBuilder();
-                                elementData.Append(collection.CollectionId + ";" /*артикул коллекции*/
-                                                 + worksheet.Cell(i, j - 1).Value.ToString() + ";"  /*имя элемента*/
-                                                 + worksheet.Cell(i, j).Value.ToString() + ";"); /*артикул элемента*/
-
-                                string collectionId = "";
-                                string elementId = "";
-                                string elementName = "";
-
-                                List<ElementPrice> prices = new();
-
-                                for (int k = j + 1; k <= columns.Count(); k++)
+                                if (!IsTargetRow(stringValue, out string name))
                                 {
-                                    if (worksheet.Cell(i, k).Value.IsNumber)
+                                    _textBox2.AppendText("строка выхода из цикла " + i + " " + name + Environment.NewLine);
+                                    break;
+                                }
+
+                                if (TryFindCollection(stringValue, out FurnitureCollection collection))
+                                {
+                                    var elementData = new StringBuilder();
+                                    elementData.Append(collection.CollectionId + ";" /*артикул коллекции*/
+                                                     + worksheet.Cell(i, j - 1).Value.ToString() + ";"  /*имя элемента*/
+                                                     + worksheet.Cell(i, j).Value.ToString() + ";"); /*артикул элемента*/
+
+                                    string collectionId = "";
+                                    string elementId = "";
+                                    string elementName = "";
+
+                                    List<ElementPrice> prices = new();
+
+                                    for (int k = j + 1; k <= columns.Count(); k++)
                                     {
-                                        elementData.Append((int)worksheet.Cell(i, k).Value + ";");
+                                        if (worksheet.Cell(i, k).Value.IsNumber)
+                                        {
+                                            elementData.Append((int)worksheet.Cell(i, k).Value + ";");
+                                        }
                                     }
-                                }
 
-                                _textBox3.AppendText("data " + elementData.ToString() + Environment.NewLine);
-                                var data = elementData.ToString().Split(';');
+                                    _textBox3.AppendText("data " + elementData.ToString() + Environment.NewLine);
+                                    var data = elementData.ToString().Split(';');
 
-                                for (int n = 0; n < data.Length-1; n++)
-                                {
-                                    switch (n)
+                                    for (int n = 0; n < data.Length - 1; n++)
                                     {
-                                        case 0:
-                                            collectionId = data[n];
-                                            break;
-                                        case 1:
-                                            elementName = data[n];
-                                            break;
-                                        case 2:
-                                            elementId = data[n];
-                                            break;
-                                        default:
-                                            {
-                                                int.TryParse(data[n], out int price);
-                                                prices.Add(new ElementPrice(elementId, n, price));
-                                            }
-                                            break;
+                                        switch (n)
+                                        {
+                                            case 0:
+                                                collectionId = data[n];
+                                                break;
+                                            case 1:
+                                                elementName = data[n];
+                                                break;
+                                            case 2:
+                                                elementId = data[n];
+                                                break;
+                                            default:
+                                                {
+                                                    int.TryParse(data[n], out int price);
+                                                    prices.Add(new ElementPrice(elementId, n, price));
+                                                }
+                                                break;
+                                        }
                                     }
+
+                                    var element = new FurnitureElement(collectionId, elementId, elementName);
+
+                                    foreach (var price in prices)
+                                    {
+                                        element.Prices.Add(price);
+                                    }
+
+                                    _context.Add(element);
+                                    _context.SaveChanges();
+
+                                    i++;
+                                    j = 0;
+                                    _textBox1.AppendText(collectionId + "//" + elementId + Environment.NewLine);
+                                    elementData = null;
                                 }
-
-                                var element = new FurnitureElement(collectionId, elementId, elementName);
-
-                                foreach (var price in prices)
-                                {
-                                    element.Prices.Add(price);
-                                }
-
-                                _context.Add(element);
-                                _context.SaveChanges();
-
-                                i++;
-                                j = 0;
-                                _textBox1.AppendText(collectionId + "//" + elementId + Environment.NewLine);
-                                elementData = null;
                             }
                         }
                     }
