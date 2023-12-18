@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            PricesDataGridView = new DataGridView();
             TempDeleteElements = new Button();
             ElementsDataGridView = new DataGridView();
             CollectionsDataGridView = new DataGridView();
@@ -50,9 +51,9 @@
             furnitureElementBindingSource1 = new BindingSource(components);
             furnitureElementBindingSource = new BindingSource(components);
             furnitureCollectionBindingSource = new BindingSource(components);
-            PricesDataGridView = new DataGridView();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PricesDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ElementsDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)CollectionsDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)furnitureCollectionBindingSource1).BeginInit();
@@ -61,7 +62,6 @@
             ((System.ComponentModel.ISupportInitialize)furnitureElementBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)furnitureElementBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)furnitureCollectionBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)PricesDataGridView).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -92,6 +92,24 @@
             tabPage1.Text = "Коллекция";
             tabPage1.UseVisualStyleBackColor = true;
             // 
+            // PricesDataGridView
+            // 
+            PricesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            PricesDataGridView.DefaultCellStyle = dataGridViewCellStyle1;
+            PricesDataGridView.Location = new Point(826, 4);
+            PricesDataGridView.Name = "PricesDataGridView";
+            PricesDataGridView.ReadOnly = true;
+            PricesDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            PricesDataGridView.Size = new Size(349, 649);
+            PricesDataGridView.TabIndex = 4;
+            // 
             // TempDeleteElements
             // 
             TempDeleteElements.Location = new Point(7, 86);
@@ -106,19 +124,19 @@
             // ElementsDataGridView
             // 
             ElementsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            ElementsDataGridView.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            ElementsDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             ElementsDataGridView.Location = new Point(428, 3);
             ElementsDataGridView.Name = "ElementsDataGridView";
             ElementsDataGridView.ReadOnly = true;
             ElementsDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            ElementsDataGridView.Size = new Size(362, 217);
+            ElementsDataGridView.Size = new Size(362, 650);
             ElementsDataGridView.TabIndex = 2;
             ElementsDataGridView.SelectionChanged += ElementsDataGridView_SelectionChanged;
             // 
@@ -128,19 +146,19 @@
             CollectionsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             CollectionsDataGridView.Columns.AddRange(new DataGridViewColumn[] { collectionIdDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn });
             CollectionsDataGridView.DataSource = furnitureCollectionBindingSource1;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            CollectionsDataGridView.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            CollectionsDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             CollectionsDataGridView.Location = new Point(101, 3);
             CollectionsDataGridView.Name = "CollectionsDataGridView";
             CollectionsDataGridView.ReadOnly = true;
             CollectionsDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            CollectionsDataGridView.Size = new Size(305, 217);
+            CollectionsDataGridView.Size = new Size(284, 650);
             CollectionsDataGridView.TabIndex = 1;
             CollectionsDataGridView.SelectionChanged += CollectionsDataGridView_SelectionChanged;
             // 
@@ -193,10 +211,10 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(749, 99);
+            textBox3.Location = new Point(22, 158);
             textBox3.Multiline = true;
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(359, 386);
+            textBox3.Size = new Size(1303, 558);
             textBox3.TabIndex = 4;
             // 
             // textBox2
@@ -204,7 +222,7 @@
             textBox2.Location = new Point(383, 99);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(261, 386);
+            textBox2.Size = new Size(261, 40);
             textBox2.TabIndex = 3;
             // 
             // textBox1
@@ -212,7 +230,7 @@
             textBox1.Location = new Point(22, 99);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(243, 386);
+            textBox1.Size = new Size(243, 40);
             textBox1.TabIndex = 2;
             // 
             // TempXMLDataView
@@ -245,24 +263,6 @@
             // 
             furnitureCollectionBindingSource.DataSource = typeof(FurnitureCollection);
             // 
-            // PricesDataGridView
-            // 
-            PricesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Window;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            PricesDataGridView.DefaultCellStyle = dataGridViewCellStyle6;
-            PricesDataGridView.Location = new Point(101, 240);
-            PricesDataGridView.Name = "PricesDataGridView";
-            PricesDataGridView.ReadOnly = true;
-            PricesDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            PricesDataGridView.Size = new Size(689, 279);
-            PricesDataGridView.TabIndex = 4;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -276,6 +276,7 @@
             Load += Form1_Load;
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)PricesDataGridView).EndInit();
             ((System.ComponentModel.ISupportInitialize)ElementsDataGridView).EndInit();
             ((System.ComponentModel.ISupportInitialize)CollectionsDataGridView).EndInit();
             ((System.ComponentModel.ISupportInitialize)furnitureCollectionBindingSource1).EndInit();
@@ -285,7 +286,6 @@
             ((System.ComponentModel.ISupportInitialize)furnitureElementBindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)furnitureElementBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)furnitureCollectionBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)PricesDataGridView).EndInit();
             ResumeLayout(false);
         }
 
